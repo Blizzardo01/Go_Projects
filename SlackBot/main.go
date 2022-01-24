@@ -1,21 +1,16 @@
 package main
 
 import ("fmt"
-        "os"
         "time"
-
-        "github.com/joho/godotenv"
         "github.com/slack-go/slack"
       )
 
 func main() {
 
-  godotenv.Load(".env")
+  authtoken := "xoxb-2993577612355-2993554338050-qcMcuShIClrso9QlCZBZ6Q4K"
+  channeltoken := "C02V7H0GP8B"
 
-  token := os.Getenv("SLACK_AUTH_TOKEN")
-  channel1ID := os.Getenv("SLACK_CHANNEL_ID")
-
-  client := slack.New(token, slack.OptionDebug(true))
+  client := slack.New(authtoken, slack.OptionDebug(true))
 
   attachment := slack.Attachment{
     Pretext: "Testing Message",
@@ -30,7 +25,7 @@ func main() {
     },
   }
     _, timestamp, err := client.PostMessage(
-    channel1ID,
+    channeltoken,
     slack.MsgOptionAttachments(attachment),
     )
 
